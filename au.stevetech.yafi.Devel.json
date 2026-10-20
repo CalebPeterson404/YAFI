@@ -1,0 +1,47 @@
+{
+    "id": "au.stevetech.yafi.Devel",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "49",
+    "sdk": "org.gnome.Sdk",
+    "command": "yafi",
+    "finish-args": [
+        "--device=all",
+        "--socket=fallback-x11",
+        "--socket=wayland",
+        "--share=ipc",
+        "--env=YAFI_APP_ID=au.stevetech.yafi.Devel"
+    ],
+    "cleanup": [
+        "/include",
+        "/lib/pkgconfig",
+        "/man",
+        "/share/doc",
+        "/share/gtk-doc",
+        "/share/man",
+        "/share/pkgconfig",
+        "*.la",
+        "*.a"
+    ],
+    "modules": [
+        "python3-cros_ec_python.json",
+        {
+            "name": "yafi",
+            "builddir": true,
+            "buildsystem": "meson",
+            "sources": [
+                {
+                    "type": "dir",
+                    "path": "."
+                }
+            ],
+            "post-install": [
+                "mv ${FLATPAK_DEST}/share/dbus-1/services/au.stevetech.yafi.service ${FLATPAK_DEST}/share/dbus-1/services/au.stevetech.yafi.Devel.service",
+                "sed -i 's/^Name=.*/Name=au.stevetech.yafi.Devel/' ${FLATPAK_DEST}/share/dbus-1/services/au.stevetech.yafi.Devel.service"
+            ]
+        }
+    ],
+    "rename-desktop-file": "au.stevetech.yafi.desktop",
+    "rename-icon": "au.stevetech.yafi",
+    "rename-appdata-file": "au.stevetech.yafi.metainfo.xml",
+    "desktop-file-name-suffix": " (Devel)"
+}
