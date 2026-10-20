@@ -34,6 +34,7 @@ from .leds import LedsPage
 from .battery import BatteryPage
 from .battery_limiter import BatteryLimiterPage
 from .hardware import HardwarePage
+from .macropad import MacropadPage
 
 from cros_ec_python import get_cros_ec
 
@@ -106,8 +107,11 @@ class YafiApplication(Adw.Application):
             ("Battery", BatteryPage()),
             ("Battery Limiter", BatteryLimiterPage()),
             ("Sensors", HardwarePage()),
-            ("About", None),
         )
+        # QMK/VIA input modules are reached through Linux hidraw
+        if sys.platform == "linux":
+            pages += (("Macropad", MacropadPage()),)
+        pages += (("About", None),)
 
         # Build the navbar
         for page in pages:

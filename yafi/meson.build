@@ -35,6 +35,8 @@ yafi_sources = [
   'battery.py',
   'battery_limiter.py',
   'hardware.py',
+  'macropad.py',
+  'via.py',
 ]
 
 install_data(yafi_sources, install_dir: moduledir)

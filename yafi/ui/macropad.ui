@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<interface>
+  <!-- interface-name macropad.ui -->
+  <!-- interface-description The Macropad (QMK/VIA) page for YAFI -->
+  <!-- interface-authors CalebPeterson404 -->
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="libadwaita" version="1.0"/>
+  <template class="MacropadPage" parent="GtkBox">
+    <property name="orientation">vertical</property>
+    <property name="spacing">12</property>
+    <property name="margin-bottom">10</property>
+    <child>
+      <object class="GtkListBox">
+        <property name="margin-end">10</property>
+        <property name="margin-start">10</property>
+        <property name="selection-mode">none</property>
+        <child>
+          <object class="AdwActionRow" id="status_row">
+            <property name="title">Macropad</property>
+            <property name="subtitle">Searching…</property>
+            <child type="suffix">
+              <object class="GtkButton" id="reload_button">
+                <property name="icon-name">view-refresh-symbolic</property>
+                <property name="tooltip-text">Reconnect and reload</property>
+                <property name="valign">center</property>
+                <style>
+                  <class name="flat"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkListBox" id="keymap_box">
+        <property name="margin-end">10</property>
+        <property name="margin-start">10</property>
+        <property name="selection-mode">none</property>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title">Keymap</property>
+            <property name="subtitle">Click a key to change it. Changes are written to the macropad immediately.</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwComboRow" id="layer_row">
+            <property name="title">Layer</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkListBoxRow">
+            <property name="activatable">False</property>
+            <child>
+              <object class="GtkGrid" id="key_grid">
+                <property name="column-homogeneous">True</property>
+                <property name="row-homogeneous">True</property>
+                <property name="column-spacing">6</property>
+                <property name="row-spacing">6</property>
+                <property name="halign">center</property>
+                <property name="margin-top">12</property>
+                <property name="margin-bottom">12</property>
+                <property name="margin-start">12</property>
+                <property name="margin-end">12</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkListBox" id="lighting_box">
+        <property name="margin-end">10</property>
+        <property name="margin-start">10</property>
+        <property name="selection-mode">none</property>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title">Lighting</property>
+            <property name="subtitle">Changes preview live; press Save to keep them after a replug.</property>
+            <child type="suffix">
+              <object class="GtkButton" id="rgb_save_button">
+                <property name="label">Save</property>
+                <property name="valign">center</property>
+                <style>
+                  <class name="suggested-action"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwComboRow" id="rgb_effect_row">
+            <property name="title">Effect</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title">Brightness</property>
+            <child>
+              <object class="GtkScale" id="rgb_brightness_scale">
+                <property name="hexpand">True</property>
+                <property name="adjustment">
+                  <object class="GtkAdjustment">
+                    <property name="upper">255</property>
+                    <property name="step-increment">1</property>
+                    <property name="page-increment">16</property>
+                  </object>
+                </property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title">Speed</property>
+            <child>
+              <object class="GtkScale" id="rgb_speed_scale">
+                <property name="hexpand">True</property>
+                <property name="adjustment">
+                  <object class="GtkAdjustment">
+                    <property name="upper">255</property>
+                    <property name="step-increment">1</property>
+                    <property name="page-increment">16</property>
+                  </object>
+                </property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title">Hue</property>
+            <child>
+              <object class="GtkScale" id="rgb_hue_scale">
+                <property name="hexpand">True</property>
+                <property name="adjustment">
+                  <object class="GtkAdjustment">
+                    <property name="upper">255</property>
+                    <property name="step-increment">1</property>
+                    <property name="page-increment">16</property>
+                  </object>
+                </property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title">Saturation</property>
+            <child>
+              <object class="GtkScale" id="rgb_sat_scale">
+                <property name="hexpand">True</property>
+                <property name="adjustment">
+                  <object class="GtkAdjustment">
+                    <property name="upper">255</property>
+                    <property name="step-increment">1</property>
+                    <property name="page-increment">16</property>
+                  </object>
+                </property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkListBox" id="backup_box">
+        <property name="margin-end">10</property>
+        <property name="margin-start">10</property>
+        <property name="selection-mode">none</property>
+        <child>
+          <object class="AdwActionRow" id="backup_row">
+            <property name="title">Backup</property>
+            <property name="subtitle">Save or restore the whole keymap and lighting as JSON.</property>
+            <child type="suffix">
+              <object class="GtkBox">
+                <property name="spacing">6</property>
+                <property name="valign">center</property>
+                <child>
+                  <object class="GtkButton" id="export_button">
+                    <property name="label">Export…</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="import_button">
+                    <property name="label">Restore…</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

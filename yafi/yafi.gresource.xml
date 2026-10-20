@@ -7,6 +7,7 @@
     <file preprocess="xml-stripblanks">ui/battery.ui</file>
     <file preprocess="xml-stripblanks">ui/battery-limiter.ui</file>
     <file preprocess="xml-stripblanks">ui/hardware.ui</file>
+    <file preprocess="xml-stripblanks">ui/macropad.ui</file>
   </gresource>
   <gresource prefix="/au/stevetech/yafi/icons/scalable/actions">
     <file alias="au.stevetech.yafi.svg" preprocess="xml-stripblanks">../data/icons/hicolor/scalable/apps/au.stevetech.yafi.svg</file>
